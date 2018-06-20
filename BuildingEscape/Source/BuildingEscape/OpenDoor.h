@@ -6,8 +6,11 @@
 #include "Components/ActorComponent.h"
 #include "Engine/TriggerVolume.h" 
 
+
 #include "OpenDoor.generated.h" //needs to be last #include in header
 
+// Macro to create new class that allows blueprint assignable
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnOpenRequest);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
@@ -17,6 +20,9 @@ class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UOpenDoor();
+
+	UPROPERTY(BlueprintAssignable)
+	FOnOpenRequest OnOpenRequest;
 
 protected:
 	// Called when the game starts
